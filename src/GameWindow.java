@@ -6,6 +6,9 @@ public class GameWindow extends JFrame {
     private static final int WIN_WIDHT = 505;
     private static final int WIN_POS_X = 500;
     private static final int WIN_POS_Y = 300;
+    private static StartNewGameWindow startNewGameWindow;
+    private static Map field;
+
 
     public GameWindow() {
         setBounds(WIN_POS_X, WIN_POS_Y, WIN_HEIGHT, WIN_WIDHT);
@@ -17,9 +20,15 @@ public class GameWindow extends JFrame {
         jPanel.add(btnNewGame);
         jPanel.add(btnExit);
         add(jPanel, BorderLayout.SOUTH);
-        btnNewGame.addActionListener(event ->{
-
-                });
+        startNewGameWindow = new StartNewGameWindow(this);
+        btnNewGame.addActionListener(event -> {
+            startNewGameWindow.setVisible(true);
+        });
+        btnExit.addActionListener(event -> {
+            System.exit(0);
+        });
+        field = new Map();
+        add(field,BorderLayout.CENTER);
         setVisible(true);
     }
 
