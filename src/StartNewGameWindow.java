@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 
 public class StartNewGameWindow extends JFrame {
@@ -28,6 +30,7 @@ public class StartNewGameWindow extends JFrame {
         setLocation(posX, posY);
         setLayout(new GridLayout(10, 1));
         addGameControlMode();
+        addGameControlFieldWinLenght();
     }
 
 
@@ -39,4 +42,19 @@ public class StartNewGameWindow extends JFrame {
         add(jrbHumanvsHuman);
     }
 
+    private void addGameControlFieldWinLenght() {
+        add(new JLabel("Choose field size"));
+        JLabel lblFieldSize = new JLabel(STR_FIELD_SIZE + MIN_FIELD_SIZE);
+        add(lblFieldSize);
+        slFieldSize = new JSlider(MIN_FIELD_SIZE, MAX_FIELD_SIZE, MIN_FIELD_SIZE);
+        add(slFieldSize);
+        slFieldSize.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                int currentFieldSize = slFieldSize.getValue();
+                lblFieldSize.setText(STR_FIELD_SIZE  + currentFieldSize);
+            }
+        });
+
+    }
 }
