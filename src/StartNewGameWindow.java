@@ -31,8 +31,18 @@ public class StartNewGameWindow extends JFrame {
         setLayout(new GridLayout(10, 1));
         addGameControlMode();
         addGameControlFieldWinLenght();
+        JButton btnStartGame = new JButton("Start game");
+        add(btnStartGame);
+        btnStartGame.addActionListener(e -> {
+btnStartGameClick();
+        });
     }
 
+
+    private void btnStartGameClick(){
+setVisible(false);
+
+    }
 
     private void addGameControlMode() {
         add(new Label("Choose game mode"));
@@ -48,12 +58,21 @@ public class StartNewGameWindow extends JFrame {
         add(lblFieldSize);
         slFieldSize = new JSlider(MIN_FIELD_SIZE, MAX_FIELD_SIZE, MIN_FIELD_SIZE);
         add(slFieldSize);
-        slFieldSize.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                int currentFieldSize = slFieldSize.getValue();
-                lblFieldSize.setText(STR_FIELD_SIZE  + currentFieldSize);
-            }
+        slFieldSize.addChangeListener(e -> {
+            int currentFieldSize = slFieldSize.getValue();
+            slWinLenght.setMaximum(currentFieldSize);
+            lblFieldSize.setText(STR_FIELD_SIZE + currentFieldSize);
+        });
+
+        add(new JLabel("Choose winning lenght"));
+        JLabel lblWinLen = new JLabel(STR_WIN_LEN + MIN_WIN_LEN);
+        add(lblWinLen);
+
+        slWinLenght = new JSlider(MIN_WIN_LEN, MAX_WIN_LEN, MIN_WIN_LEN);
+        add(slWinLenght);
+        slWinLenght.addChangeListener(e -> {
+            int currentWinLen = slWinLenght.getValue();
+            lblWinLen.setText(STR_WIN_LEN + currentWinLen);
         });
 
     }
