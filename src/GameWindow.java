@@ -28,8 +28,12 @@ public class GameWindow extends JFrame {
             System.exit(0);
         });
         field = new Map();
-        add(field,BorderLayout.CENTER);
+        add(field, BorderLayout.CENTER);
         setVisible(true);
     }
 
+    void startNewGame(int mode, int fieldSizeX, int fieldSizeY, int WinLenght) {
+        field.startNewGame(mode, fieldSizeX, fieldSizeY, WinLenght);
+
+    }
 }

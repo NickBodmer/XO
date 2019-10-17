@@ -34,13 +34,23 @@ public class StartNewGameWindow extends JFrame {
         JButton btnStartGame = new JButton("Start game");
         add(btnStartGame);
         btnStartGame.addActionListener(e -> {
-btnStartGameClick();
+            btnStartGameClick();
         });
     }
 
 
-    private void btnStartGameClick(){
-setVisible(false);
+    private void btnStartGameClick() {
+        int gameMode;
+        if (jrbHumanvsAI.isSelected()) {
+            gameMode = Map.MODE_H_V_A;
+        } else {
+            gameMode = Map.MODE_H_V_H;
+        }
+        int fieldSize = slFieldSize.getValue();
+        int winLenght = slWinLenght.getValue();
+        gameWindow.startNewGame(gameMode, fieldSize,fieldSize, winLenght);
+
+        setVisible(false);
 
     }
 
